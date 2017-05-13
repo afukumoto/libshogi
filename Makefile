@@ -31,7 +31,7 @@ PRGRMS  = lib/shogi/Direction.cpp lib/shogi/Region.cpp lib/shogi/Square.cpp \
 all: lib/$(LIBNAME) tags 
 
 lib/$(LIBNAME): $(HEADERS) $(PRGRMS)
-	CFLAGS=$(CFLAGS) make -C lib
+	CFLAGS=$(CFLAGS) $(MAKE) -C lib
 
 tags: $(HEADERS) $(PRGRMS)
 	ctags -R .
@@ -49,7 +49,7 @@ uninstall:
 	rm -f  $(LIBRDIR)/libshogi.so
 
 clean:
-	make -C lib clean
-	make -C example clean
-	make -C regression clean
+	$(MAKE) -C lib clean
+	$(MAKE) -C example clean
+	$(MAKE) -C regression clean
 	rm -f tags

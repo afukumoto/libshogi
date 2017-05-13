@@ -99,7 +99,7 @@ all: $(LIBNAME)
 	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 $(DSFMT)/dSFMT.o: $(DSFMT)/dSFMT.c $(DSFMT)/dSFMT.h
-	CFLAGS='-DDSFMT_MEXP=19937' make -C dSFMT-src-2.2.3/ dSFMT.o
+	CFLAGS='-DDSFMT_MEXP=19937' $(MAKE) -C dSFMT-src-2.2.3/ dSFMT.o
 
 $(LIBNAME): $(HEADERS) $(OBJS)
 	$(CC) -shared -Wl,-soname,$@ -o $@ $(OBJS) $(LFLAGS)
@@ -109,5 +109,5 @@ clean:
 	rm -f csa/*.o csa/gch.* *.gch
 	rm -f core.*
 	rm -f $(LIBNAME)
-	make -C $(DSFMT) clean
+	$(MAKE) -C $(DSFMT) clean
 
