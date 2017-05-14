@@ -46,6 +46,7 @@
 #include <string>
 
 #include <stdint.h>
+#include <netinet/in.h>
 #include <netinet/ip.h>
 #include <semaphore.h>
 
