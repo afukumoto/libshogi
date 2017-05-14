@@ -601,12 +601,14 @@ try {
                 continue;
             }
             state = CLOSE_WAITING;
+	    /*FALLTHROUGH*/
 
         case CLOSE_WAITING:
             if (smrystr.find("END Game_Summary")   == std::string::npos) {
                 continue;
             }
             state = PARSE_BASEVAL;
+	    /*FALLTHROUGH*/
 
         case PARSE_BASEVAL:
 #define _CSACONNECTION_CPP_GAMESUM_REQVAL(field_string,token_string) { \
@@ -647,6 +649,7 @@ try {
             // the numeric fields
             _CSACONNECTION_CPP_GAMESUM_NUMVAL(maxMoves,    "Max_Moves:",        256    );
             state = PARSE_TIMEBLK;
+	    /*FALLTHROUGH*/
 
         case PARSE_TIMEBLK:
 #define _CSACONNECTION_CPP_GAMESUM_BLKCHK(block_string) { \
@@ -678,6 +681,7 @@ try {
             _CSACONNECTION_CPP_GAMESUM_NUMVAL(delay,       "Delay:",                0  );
             _CSACONNECTION_CPP_GAMESUM_NUMVAL(increment,   "Increment:",            0  );
             state = PARSE_KYOKBLK;
+	    /*FALLTHROUGH*/
 
         case PARSE_KYOKBLK:
             _CSACONNECTION_CPP_GAMESUM_BLKCHK("BEGIN Position");
